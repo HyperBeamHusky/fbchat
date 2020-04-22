@@ -91,12 +91,17 @@ Example Usage
 
 .. code-block::
 
-    import getpass
-    import fbchat
-    session = fbchat.Session.login("<email/phone number>", getpass.getpass())
-    user = fbchat.User(session=session, id=session.user_id)
-    user.send_text("Test message!")
+    from fbchat import Client
+    from fbchat.models import *
 
+    client = Client("<email>", "<password>")
+
+    print("Own id: {}".format(client.uid))
+
+    client.send(Message(text="Hi me!"), thread_id=client.uid, thread_type=ThreadType.USER)
+
+    client.logout()
+    
 More examples are available `here <https://github.com/carpedm20/fbchat/tree/master/examples>`__.
 
 
